@@ -59,15 +59,13 @@ A continuación se presentan las pantallas de ejecución del programa:
 
 <img width="1045" height="632" alt="image" src="https://github.com/user-attachments/assets/8a0a661a-3176-4882-9355-a62dded6dcd4" />
 
+<img width="1041" height="631" alt="image" src="https://github.com/user-attachments/assets/3f2c3731-d28a-4774-9d7e-6bdaecd7253e" />
+
 
 <img width="1042" height="631" alt="image" src="https://github.com/user-attachments/assets/8cdc7281-fa9f-4170-8e5e-e88cea8a4eb4" />
 
 
 <img width="1046" height="632" alt="image" src="https://github.com/user-attachments/assets/98aa9ef9-61bd-41ba-9488-83e14db94077" />
-
-
-<img width="1053" height="639" alt="image" src="https://github.com/user-attachments/assets/28db127a-2d2a-4714-b5b2-217cb6d2c23a" />
-
 
 ***
 
