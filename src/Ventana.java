@@ -21,7 +21,8 @@ public class Ventana {
     private JLabel lblVentasTotalesQL;
     private JLabel lblVentasTotalesRutas;
     private JTextArea textArea1;
-    
+    private JLabel lblValorRuta;
+
     // Instancia del gestor de boletos
     private GestorBoletos gestorBoletos;
     
@@ -38,6 +39,16 @@ public class Ventana {
             @Override
             public void actionPerformed(ActionEvent e) {
                 procesarCompra();
+            }
+        });
+
+        // Configurar el evento del combo box para actualizar el precio de la ruta
+        cboMarca.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String rutaSeleccionada = (String) cboMarca.getSelectedItem();
+                double precio = gestorBoletos.getPrecioPorRuta(rutaSeleccionada);
+                lblValorRuta.setText(String.format("$%.2f", precio));
             }
         });
     }
@@ -140,6 +151,16 @@ public class Ventana {
             sb.append(String.format("Total recaudado: $%.2f\n\n", gestorBoletos.getTotalRecaudado()));
             sb.append(gestorBoletos.toString().replace("=== HISTORIAL DE COMPRAS ===\n", ""));
             textArea1.setText(sb.toString());
+            lblCantitadBoletosTotalQG.setText(String.valueOf(gestorBoletos.getBoletosVendidos(GestorBoletos.RUTA_QUITO_GUAYAQUIL)));
+            lblCantitadBoletosTotalQC.setText(String.valueOf(gestorBoletos.getBoletosVendidos(GestorBoletos.RUTA_QUITO_CUENCA)));
+            lblCantitadBoletosTotalQL.setText(String.valueOf(gestorBoletos.getBoletosVendidos(GestorBoletos.RUTA_QUITO_LOJA)));
+            lblCantitadBoletosRestantesQG.setText(String.valueOf(gestorBoletos.getBoletosDisponibles(GestorBoletos.RUTA_QUITO_GUAYAQUIL)));
+            lblCantitadBoletosRestantesQC.setText(String.valueOf(gestorBoletos.getBoletosDisponibles(GestorBoletos.RUTA_QUITO_CUENCA)));
+            lblCantitadBoletosRestantesQL.setText(String.valueOf(gestorBoletos.getBoletosDisponibles(GestorBoletos.RUTA_QUITO_LOJA)));
+            lblVentasTotalesQG.setText(String.format("$%.2f", gestorBoletos.getBoletosVendidos(GestorBoletos.RUTA_QUITO_GUAYAQUIL) * gestorBoletos.getPrecioPorRuta(GestorBoletos.RUTA_QUITO_GUAYAQUIL)));
+            lblVentasTotalesQC.setText(String.format("$%.2f", gestorBoletos.getBoletosVendidos(GestorBoletos.RUTA_QUITO_CUENCA) * gestorBoletos.getPrecioPorRuta(GestorBoletos.RUTA_QUITO_CUENCA)));
+            lblVentasTotalesQL.setText(String.format("$%.2f", gestorBoletos.getBoletosVendidos(GestorBoletos.RUTA_QUITO_LOJA) * gestorBoletos.getPrecioPorRuta(GestorBoletos.RUTA_QUITO_LOJA)));
+            lblVentasTotalesRutas.setText(String.format("$%.2f", gestorBoletos.getTotalRecaudado()));
         }
         
         // Hacer scroll hacia abajo para mostrar la última compra
@@ -153,10 +174,14 @@ public class Ventana {
         txtNombre.requestFocus();
     }
 
+
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Sistema de Venta de Boletos");
         frame.setContentPane(new Ventana().principal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1200, 700);
+        frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible(true);
     }
